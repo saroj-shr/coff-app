@@ -9,7 +9,14 @@ export const serverSchema = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
 
-  NEXTAUTH_URL: z.string().url() || z.void(),
+  // Issue with Versal Deployment
+  // NEXTAUTH_URL should be dynamic in production
+  // But while building in versal NEXTAUTH_URL is not set during the build time
+  // Causing the build prcess to error out, hence commented out !
+  // Need to find way around reagarding this
+
+  // NEXTAUTH_URL: z.string().url() || z.void(),
+  
   NEXTAUTH_SECRET: z.string(),
   
   GOOGLE_CLIENT_ID: z.string(),
