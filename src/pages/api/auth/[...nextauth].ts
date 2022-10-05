@@ -15,6 +15,10 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+    async redirect() {
+      return "/dashboard";
+      // return "/users";
+    },
   },
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
@@ -22,6 +26,8 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
+      authorization:
+        "https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code",
     }),
   ],
 };
